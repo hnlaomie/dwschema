@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+}
+
+plugins {
+    id 'java' // or 'groovy' Must be explicitly applied
+    id 'scala'
+    id 'idea'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+apply from: 'libraries.gradle'
+
+//Get dependencies from Maven central repository
+repositories {
+    maven{ url 'https://packages.confluent.io/maven/'}
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
+project.buildDir = "target"
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
+
+sourceSets {
+    main {
+        resources {
+            include "**/*.properties"
+            include "**/*.xml"
+            include "**/*.csv"
+            include "**/*.json"
+            include "**/*.avsc"
+        }
+
+    }
+}
+
+//Project dependencies
+dependencies {
+    compile libraries.log4jCore
+    compile libraries.log4jApi
+    compile libraries.log4jSlf4jImpl
+    compile libraries.slf4jApi
+    compile libraries.slf4jExt
+
+    compile libraries.commonsLang3
+
+    compile libraries.lazyJson
+
+    compile libraries.scala11Library
+    compile libraries.scala11Compiler
+    compile libraries.scala11Reflect
+    compile libraries.scala11Scalap
+    
+}
+
+shadowJar {
+    //relocate 'com.google.common', 'com.adwo.com.google.common'
+    zip64 true
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = 'Main'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+}
+
+task copyToShell(type: Copy)
+copyToShell {
+    from('target/libs')
+    into('./')
+    include('*.jar')
+}
+copyToShell.dependsOn shadowJar
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10'
+}
