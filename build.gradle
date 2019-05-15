@@ -10,7 +10,7 @@ plugins {
     id 'java' // or 'groovy' Must be explicitly applied
     id 'scala'
     id 'idea'
-    id 'com.github.johnrengelman.shadow' version '2.0.4'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
 apply from: 'libraries.gradle'
@@ -50,12 +50,12 @@ dependencies {
 
     compile libraries.commonsLang3
 
-    compile libraries.lazyJson
+    compile libraries.sprayJson
 
-    compile libraries.scala11Library
-    compile libraries.scala11Compiler
-    compile libraries.scala11Reflect
-    compile libraries.scala11Scalap
+    compile libraries.scalaLibrary
+    compile libraries.scalaCompiler
+    compile libraries.scalaReflect
+    compile libraries.scalaScalap
     
 }
 
@@ -77,7 +77,3 @@ copyToShell {
     include('*.jar')
 }
 copyToShell.dependsOn shadowJar
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.10'
-}

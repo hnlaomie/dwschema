@@ -29,11 +29,11 @@ class BaseException (
 
     /**
       * init error message from error code, parameters and exception
-      * @return
+      * @returngbv
       */
     private def initMessage(): Message = {
         val message = if (msgParams == None) MessageFactory.createMessage(errCode.get)
-            else MessageFactory.createMessage(errCode.get, msgParams.get)
+            else MessageFactory.createMessage(errCode.get, msgParams.get:_*)
 
         if (cause != None)
             message.setException(cause.get)

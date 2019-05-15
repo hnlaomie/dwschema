@@ -21,9 +21,9 @@ object MessageFactory {
         var result = value
         if (params.length > 0) {
             for (i <- params.indices) {
-                val key = "{" + i.toString + "}"
+                val key = "\\{" + i.toString + "\\}"
                 val param = if (params(i) == null) "" else params(i).toString
-                result = value.replaceAll(key, param)
+                result = result.replaceAll(key, param)
             }
         }
 
@@ -37,12 +37,11 @@ object MessageFactory {
       */
     def createMessage(key: String, params: Object*): Message = {
         val result = new Message
-
         val value = SystemParameters.getStringParam(key)
-        val realValue = if (params.length == 0) value else getValue(value, params)
+        val realValue = if (params.length == 0) value else getValue(value, params:_*)
 
         result.setKey(key)
-        result.setValue(value)
+        result.setValue(realValue)
         return result
     }
 }
