@@ -1,0 +1,9 @@
+https://druid.io/docs/0.9.2/querying/groupbyquery.html
+https://www.baeldung.com/kotlin-json-klaxson
+https://blog.usejournal.com/beyond-gson-evaluating-json-parsers-for-android-kotlin-e7aa4bcc413e
+https://github.com/taskbase/arson
+https://proandroiddev.com/getting-started-using-moshi-for-json-parsing-with-kotlin-5a460bf3935a
+https://github.com/stefanmedack/MoshiKotlinExample
+https://www.kotlinresources.com/library/klaxon/
+https://medium.com/@BladeCoder/advanced-json-parsing-techniques-using-moshi-and-kotlin-daf56a7b963d
+https://github.com/MicroUtils/kotlin-logging

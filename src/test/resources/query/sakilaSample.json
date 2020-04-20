@@ -1,0 +1,23 @@
+{
+  "selections": [
+    {
+      "field": "店员"
+    },
+    {
+      "field": "SUM(金额)"
+    }
+  ],
+  "filters": [
+    {
+      "logic": "AND",
+      "condition": {
+        "field": "出租日",
+        "operator": "EQ",
+        "values": [
+          "20200410"
+        ]
+      },
+      "filters": []
+    }
+  ]
+}

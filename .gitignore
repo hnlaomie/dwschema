@@ -9,8 +9,12 @@ logs
 out
 target
 
-# Gradle files
+# gradle files
 .gradle
+
+# test files
+java
+parser
 
 # idea files
 .idea

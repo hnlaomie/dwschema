@@ -1,0 +1,55 @@
+<schema name="sakila星型模型">
+    <cube name="sakila星型立方体" description="sakila星型立方体描述" enabled="1">
+        <tables>
+            <table name="payment" tableName="payment" type="table">
+                <sql/>
+                <columns>
+                    <column name="customer_id" columnName="customer_id" type="column"/>
+                    <column name="staff_id" columnName="staff_id" type="column"/>
+                    <column name="customer_id" columnName="customer_id" type="column"/>
+                    <column name="amount" columnName="amount" type="column"/>
+                </columns>
+            </table>
+            <table name="customer" tableName="customer" type="table">
+                <sql/>
+                <columns>
+                    <column name="customer_id1" columnName="customer_id" type="column"/>
+                    <column name="c_first_name" columnName="first_name" type="column"/>
+                    <column name="c_last_name" columnName="last_name" type="column"/>
+                </columns>
+            </table>
+            <table name="staff" tableName="staff" type="table">
+                <sql/>
+                <columns>
+                    <column name="staff_id1" columnName="staff_id" type="column"/>
+                    <column name="name" type="query">
+                        <sql>
+                            <![CDATA[cancat(staff.first_name, staff.last_name)]]>
+                        </sql>
+                    </column>
+                </columns>
+            </table>
+        </tables>
+        <relations>
+            <relation name="payment_customer" parent="payment" child="customer" parentColumn="customer_id" childColumn="customer_id1" type="left"/>
+            <relation name="payment_staff" parent="payment" child="staff" parentColumn="staff_id" childColumn="staff_id1" type="left"/>
+        </relations>
+
+        <pmmls/>
+
+        <dimensions>
+            <dimension name="顾客维">
+                <level name="姓" column="c_first_name"/>
+                <level name="名" column="c_last_name"/>
+            </dimension>
+            <dimension name="员工维">
+                <level name="姓名" column="name"/>
+            </dimension>
+        </dimensions>
+
+        <measures>
+            <measure name="数量" column="amount"/>
+        </measures>
+        
+    </cube>
+</schema>

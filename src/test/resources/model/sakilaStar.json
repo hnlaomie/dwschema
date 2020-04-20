@@ -1,0 +1,84 @@
+{
+  "name": "sakila星型模型",
+  "description": "sakila星型模型",
+  "dataSource": "sakila",
+  "tables": [
+    {
+      "name": "payment",
+      "dbName": "payment",
+      "type": "FACT",
+      "columns": [
+        {
+          "name": "staff_id",
+          "dbName": "staff_id"
+        },
+        {
+          "name": "amount",
+          "dbName": "amount"
+        }
+      ]
+    },
+    {
+      "name": "staff",
+      "dbName": "staff",
+      "columns": [
+        {
+          "name": "staff_id",
+          "dbName": "staff_id"
+        },
+        {
+          "name": "first_name",
+          "dbName": "first_name"
+        }
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "parent": "payment",
+      "child": "staff",
+      "type": "INNER",
+      "columns": [
+        {
+          "parentColumn": "staff_id",
+          "childColumn": "staff_id"
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "name": "staff",
+      "type": "GROUP",
+      "fields": [
+        {
+          "name": "staff_id",
+          "tableName": "staff",
+          "columnName": "staff_id",
+          "type": "DIMENSION",
+          "dataType": "INT"
+        },
+        {
+          "name": "first_name",
+          "tableName": "staff",
+          "columnName": "first_name",
+          "type": "DIMENSION",
+          "dataType": "STRING"
+        }
+      ]
+    },
+    {
+      "name": "measure",
+      "type": "GROUP",
+      "fields": [
+        {
+          "name": "amount",
+          "tableName": "payment",
+          "columnName": "amount",
+          "type": "MEASURE",
+          "dataType": "DOUBLE"
+        }
+      ]
+    }
+  ]
+}
