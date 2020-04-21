@@ -25,13 +25,13 @@ data class Model (
     // 模型名
     val name: String,
     // 模型描述
-    val description: String,
+    val description: String = "",
     // 数据源
     val dataSource: String,
     // 事实维度表定义
     val tables: List<DBTable>,
     // 事实维度表关联
-    val joins: List<JoinTable>,
+    val joins: List<JoinTable> = listOf(),
     // 字段定义
     val fields: List<Field>
 )

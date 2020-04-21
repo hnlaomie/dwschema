@@ -27,7 +27,7 @@ data class Query (
     // 查询类型
     val queryType: QueryType = QueryType.DSL,
     // sql语句
-    val sql: String,
+    val sql: String = "",
     // 查询项
     val selections: List<Item>,
     // 过滤项

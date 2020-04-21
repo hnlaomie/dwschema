@@ -27,7 +27,7 @@ data class Filter (
     // 逻辑操作符（与And，或Or，无）
     val logic: OperatorType = OperatorType.AND,
     // 嵌套过滤条件，和过滤二选一
-    val filters: List<Filter>,
+    val filters: List<Filter> = listOf(),
     // 过滤项
     val condition: Condition
 )

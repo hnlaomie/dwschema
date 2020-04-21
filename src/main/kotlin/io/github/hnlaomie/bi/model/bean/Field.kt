@@ -26,9 +26,9 @@ import io.github.hnlaomie.bi.constant.FieldType
  */
 data class Field (
     // 对应表名
-    val tableName: String,
+    val tableName: String = "",
     // 对应列名
-    val columnName: String,
+    val columnName: String = "",
     // 字段名
     val name: String = columnName,
     // 字段类型
@@ -36,5 +36,5 @@ data class Field (
     // 字段值类型
     val dataType: FieldDataType = FieldDataType.STRING,
     // 子字段列表
-    val fields: List<Field>
+    val fields: List<Field> = listOf()
 )

@@ -20,6 +20,7 @@ package io.github.hnlaomie.bi.query.bean
 
 import com.google.gson.Gson
 import io.github.hnlaomie.bi.model.bean.Model
+import io.github.hnlaomie.util.json.JsonUtil
 import org.junit.Before
 import org.junit.Test
 
@@ -30,7 +31,7 @@ class ModelJsonTest {
         val jsonStr = this::class.java
                 .getResource(jsonFile)
                 .readText()
-        val model = Gson().fromJson(jsonStr, Model::class.java)
+        val model = JsonUtil(gson = Gson()).fromJson(jsonStr, Model::class.java)
         println(model)
     }
 
